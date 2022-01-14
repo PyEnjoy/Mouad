@@ -1,11 +1,5 @@
 {
     "name": "app/app",
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Core\\": "core/"
-        }
-    },
     "authors": [
         {
             "name": "Adil",

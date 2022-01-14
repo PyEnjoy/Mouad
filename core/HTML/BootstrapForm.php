@@ -11,11 +11,13 @@ class BootstrapForm extends Form{
     public function input(string $name,string $label = null,$option = []): string
     {
         $type = isset($option['type']) ? $option['type'] : 'text';
+        $last = isset($option['last']) ? $option['last'] : '';
+        $accept = isset($option['accept']) ? "accept=\"".$option['accept'].'"' : '';
         $label = '<label>'. $label . '</label>';
         if($type === 'textarea'){
-            $input = '<textarea class="form-control" type="'.$type.'" name="'.$name.'" >'.$this->getValue($name).'</textarea>';
+            $input = '<textarea class="form-control mb-3" rows="6" type="'.$type.'" name="'.$name.'" >'.$this->getValue($name).'</textarea>';
         }else{
-            $input = '<input class="form-control" type="'.$type.'" name="'.$name.'" value="'.$this->getValue($name).'">';
+            $input = '<input class="form-control mb-3" type="'.$type.'" name="'.$name.'" value="'.$this->getValue($name).'" '.$last.' '.$accept.'>';
         }
         return $this->surround($label.$input);
         //$type = $name === 'password' ? 'password' : 'text';

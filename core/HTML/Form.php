@@ -95,7 +95,6 @@ class Form
 
     protected function getValue(string $key)
     {
-        
         if (is_object($this->data)) {
             return $this->data->$key;
         }

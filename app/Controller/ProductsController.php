@@ -27,6 +27,9 @@ class ProductsController extends AppController{
             };
         }
         $product = $this->Product->find($id);
+        if(!$product){
+            $this->notFound();
+        }
         $comments = $this->Comment->findwithuser($id);
         $countcomment = $this->Comment->count($id);
         $moyenrating = $this->Comment->moyenrating($id);
@@ -34,6 +37,7 @@ class ProductsController extends AppController{
         if($this->checkauth()){
             $user_comment = $this->Comment->findusercmnt($id);
         }
+        
         $Productimgs = $this->Productimg->find($product->getId());
         $this->render('products/show',compact('product','Productimgs','comments','countcomment','user_comment','moyenrating'));
     }

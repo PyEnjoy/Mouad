@@ -22,9 +22,14 @@ class LoginController extends AppController{
         $error = false;
         if (!empty($_POST)) {
             $auth = new DBAuth(App::getInstance()->getDb());
+            $location = PATH;
             if($auth->login($_POST['username'],$_POST['password'])){
-                header('location:'.PATH);
+                if($_SESSION['auth']['role'] && $_SESSION['auth']['role'] === "admin"){
+                    $location .= "/admin";
+                }
+                header('location:'.$location);
             }
+
             $error = "Username or password incorrect ..!";
         }
         

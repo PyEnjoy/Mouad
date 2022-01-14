@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<title>Footwear - Free Bootstrap 4 Template by Colorlib</title>
+	<title><?= $title ?? "Mouad TP"; ?></title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -53,7 +53,6 @@
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
 								<li class="active"><a href="<?= PATH ?>">Home</a></li>
-								<li><a href="women.html">Women</a></li>
 								<?php if($auth): ?>
 									<li><a href="<?= PATH ?>/login/logout" tyle="color:#17a2b8"><span style="color:#17a2b8"><?= $_SESSION['auth']['name'] ?></span> Log Out</a></li>
 								<?php else: ?>

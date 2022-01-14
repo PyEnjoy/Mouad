@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App;
 use Core\Entity\Entity;
 
 class ProductEntity extends Entity
@@ -18,7 +19,7 @@ class ProductEntity extends Entity
     
     private $imgs = []; 
 
-    private $id_df_img;
+    //private $id_df_img;
 
     private $categories = [];
 
@@ -28,8 +29,13 @@ class ProductEntity extends Entity
         return PATH.'/products/show/' . $this->id;
     }
 
-    public function getImg(){
-        return PATH.'/images//'.$this->id_df_img;
+    public function getImage(){
+        if($this->id_df_img){
+            $img = App::getInstance()->getTable('Productimg')->defaultimg($this->id_df_img)->getUrl_img();
+        }else{
+            $img = PATH.'/images/default.jpeg';
+        }
+        return $img;
     }
 
     public function getExcerpt()
