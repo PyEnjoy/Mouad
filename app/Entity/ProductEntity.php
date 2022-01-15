@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App;
+use DateTime;
 use Core\Entity\Entity;
 
 class ProductEntity extends Entity
@@ -31,7 +32,12 @@ class ProductEntity extends Entity
 
     public function getImage(){
         if($this->id_df_img){
-            $img = App::getInstance()->getTable('Productimg')->defaultimg($this->id_df_img)->getUrl_img();
+            $defaultimg = App::getInstance()->getTable('Productimg')->defaultimg($this->id_df_img);
+            if ($defaultimg) {
+                $img = $defaultimg->getUrl_img();
+            }else{
+                $img = PATH.'/images/default.jpeg';
+            }
         }else{
             $img = PATH.'/images/default.jpeg';
         }
@@ -52,15 +58,6 @@ class ProductEntity extends Entity
     {
         return $this->titre;
     }
-
-    /**
-     * Get the value of created_at
-     */ 
-    public function getCreated_at()
-    {
-        return $this->create_time;
-    }
-
 
     public function addImgs($category): void
     {
@@ -128,4 +125,42 @@ class ProductEntity extends Entity
 
         return $this;
     }
+
+    /**
+     * Get the value of created_at
+     */ 
+    public function getCreated_at()
+    {
+        return $this->returnTime($this->create_time);
+    }
+
+    /**
+     * Get the value of updated_at
+     */ 
+    public function getUpdated_at()
+    {
+        return $this->returnTime($this->update_time);
+    }
+
+    public function returnTime($date){
+        $time = new DateTime($date);
+        $now = new DateTime('now');
+        $diff = $time->diff($now);
+        if($diff->days < 1){
+            if($diff->h < 1){
+                if ($diff->i < 1) {
+                    $return = $diff->s .' Sec';
+                }else{
+                    $return = $diff->i." Minute";
+                }
+            }else{
+                $return = $diff->h." Heurs";
+            }
+        }else{
+            return (new DateTime($date))->format("Y-m-d");
+        }
+        return $return;
+        //return $diff->format('%Y-%m-%d %H:%I:%S' );
+    }
+
 }

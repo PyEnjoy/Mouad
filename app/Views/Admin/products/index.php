@@ -11,6 +11,8 @@
                 <th scope="col">#</th>
                 <th scope="col">Img</th>
                 <th scope="col">Titre</th>
+                <th scope="col">created At</th>
+                <th scope="col">upated At</th>
                 <th scope="col">Price</th>
                 <th><a href="admin/products/add" class="btn btn-primary">Noveau</a></th>
             </tr>
@@ -26,6 +28,8 @@
                     <td>
                         <a href="<?= $product->getUrl(); ?>"><?= $product->getTitre(); ?></a>
                     </td>
+                    <td><?= $product->getCreated_at() ?></td>
+                    <td><?= $product->getUpdated_at() ?></td>
                     <td><?= $product->price ?> $</td>
                     <td>
                         <a href="./admin/products/edit/<?= $product->getID(); ?>" class="btn btn-outline-primary">Edit</a>

@@ -7709,7 +7709,11 @@ h1, h2, h3, h4, h5,
   display: block;
   height: 100% !important; }
   .product-entry .prod-img {
-    display: block; }
+    display: block;
+    width: 253px;
+    height: 168px;
+    overflow: hidden;
+  }
   .product-entry .desc {
     padding: 1.5em; }
     .product-entry .desc h2 {
