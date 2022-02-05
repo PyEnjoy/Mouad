@@ -41,4 +41,5 @@ class ProductsController extends AppController{
         $Productimgs = $this->Productimg->find($product->getId());
         $this->render('products/show',compact('product','Productimgs','comments','countcomment','user_comment','moyenrating'));
     }
+
 }

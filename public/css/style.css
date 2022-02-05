@@ -7707,12 +7707,15 @@ h1, h2, h3, h4, h5,
 
 .product-entry {
   display: block;
-  height: 100% !important; }
+  height: 100% !important;
+}
   .product-entry .prod-img {
     display: block;
+    overflow: hidden;
+  }
+  .img-une{
     width: 253px;
     height: 168px;
-    overflow: hidden;
   }
   .product-entry .desc {
     padding: 1.5em; }

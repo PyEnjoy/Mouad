@@ -9,13 +9,19 @@ class Controller{
     protected $viewPath;
     protected $template;
 
-    public function render($view,$compact = []){
-        ob_start();
-        extract($compact);
-        $auth = $this->checkauth();
-        require($view = $this->viewPath.$view.'.php');
-        $content = ob_get_clean();
-        require($this->viewPath.'templates/'.$this->template.'.php');
+    public function render($view,$compact = [],$temp = false){
+
+        if ($temp) {
+            extract($compact);
+            require($view = $this->viewPath.$view.'.php');
+        }else{
+            ob_start();
+            extract($compact);
+            $auth = $this->checkauth();
+            require($view = $this->viewPath.$view.'.php');
+            $content = ob_get_clean();
+            require($this->viewPath.'templates/'.$this->template.'.php');
+        }
     }
     
     public static function forbidden()

@@ -42,11 +42,14 @@ class Model
         return $this->query('SELECT * FROM ' . $this->table);
     }
     
-
-    
     public function find($id)
     {
         return $this->query("SELECT * FROM {$this->table} where id = ?", $id, true);
+    }
+    
+    public function findInArray($id)
+    {
+        return $this->query("SELECT * FROM {$this->table} where id in ($id)");
     }
 
     public function list($key,$value)

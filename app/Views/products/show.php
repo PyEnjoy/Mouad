@@ -14,9 +14,9 @@
     </div>
     <div class="col-sm-4">
         <div class="product-desc">
-            <h3><?= $product->getTitre(); ?></h3>
+			<h3><?= $product->getTitre(); ?></h3>
             <p class="price">
-                <span><?= $product->price; ?> $</span> 
+                <span>$ <?= $product->price; ?></span> 
                 <span class="rate">
                     <?php for ($i=0; $i < 5; $i++) { 
                         $class = $moyenrating > $i ? "icon-star-full" : "icon-star-empty";
@@ -26,17 +26,18 @@
                     (<?= $countcomment ?> Rating)
                 </span>
             </p>
-            </div>
+            <p><?= $product->getContent() ?></p>
+							
             <div class="input-group mb-4">
-                <p><?= $product->getContent() ?></p>
-            </div>
-    <!-- <div class="row">
-        <div class="col-sm-12 text-center">
-                    <p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
-                </div>
+            <input type="number" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <input type="hidden" class="id_product" value="<?= $product->getId(); ?>">
+                <p class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</p>
             </div>
         </div>
-    </div> -->
+    </div>
 </div>
 
 <div class="row col-sm-12">
@@ -45,7 +46,6 @@
             <div class="col-md-12 pills">
                 <div class="bd-example bd-example-tabs">
                     <span class="nav-link" id="pills-review-tab">Review</span>
-                   
 
                     <div class="tab-pane border">
                         <div class="row">
@@ -108,7 +108,7 @@
                                         </p>
                                         
                                         <input type="hidden" name="id_user" value="<?= $_SESSION['auth']['id']; ?>">
-                                        <input type="hidden" name="id_product" value="<?= $product->getId(); ?>">
+                                        <input type="hidden" class="id_product" name="id_product" value="<?= $product->getId(); ?>">
                                         <p class="star">
                                             <input type="submit" value="Send Comment" class="btn btn-primary">
                                         </p>
@@ -130,3 +130,35 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+                
+$('.btn-addtocart').click(function() {
+ 
+    var id = $(".id_product").val();
+    var qt = $("#quantity").val();
+    $.ajax({
+        url:"../../cart/addtocart",
+        method:"POST",
+        dataType:"json",
+        data:{id:id,qt:qt},
+        success:function(data)
+        {
+            $('.shpping_cart').text(data);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Product added!',
+                footer: '<a href="../../cart">Go to CART</a>',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        },
+        error:function(data){
+            console.log('erreur : '+data);
+        }
+    });
+});
+
+</script>

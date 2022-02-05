@@ -55,7 +55,7 @@ class DBAuth
 
     public function logout(){
         if(isset($_SESSION['auth'])){
-            unset($_SESSION['auth']);
+            session_unset();
         }
     }
 

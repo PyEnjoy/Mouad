@@ -3,6 +3,7 @@
     <?= $form->input('images[]', 'Images',['type'=>'file','last'=>'multiple',"accept" => ".png, .jpg, .jpeg"]); ?>
     
     <?= $form->input('price', 'Prix',['type' => 'number','last'=>'required']); ?>
+    <?= $form->input('qt', 'Quantité',['type' => 'number']); ?>
     <?= $form->input('content', 'contenu',['type'=>'textarea']); ?>
 
     <button class="btn btn-primary" type="submit">

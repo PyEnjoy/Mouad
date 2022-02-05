@@ -26,6 +26,11 @@
         <label>Prix</label>
         <input class="form-control mb-3" type="number" name="price" value="<?= $product->price ?>" required="">
     </div>
+      
+    <div class="form-group">
+        <label>Quantite</label>
+        <input class="form-control mb-3" type="number" name="qt" value="<?= $product->qt ?>" required="">
+    </div>
     <div class="form-group">
         <label>contenu</label>
         <textarea class="form-control mb-3" rows="6" type="textarea" name="content"><?= $product->getContent() ?></textarea>

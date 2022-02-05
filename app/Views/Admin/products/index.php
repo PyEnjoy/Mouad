@@ -11,6 +11,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Img</th>
                 <th scope="col">Titre</th>
+                <th scope="col">Quantite</th>
                 <th scope="col">created At</th>
                 <th scope="col">upated At</th>
                 <th scope="col">Price</th>
@@ -28,6 +29,7 @@
                     <td>
                         <a href="<?= $product->getUrl(); ?>"><?= $product->getTitre(); ?></a>
                     </td>
+                    <td><?= $product->qt; ?></td>
                     <td><?= $product->getCreated_at() ?></td>
                     <td><?= $product->getUpdated_at() ?></td>
                     <td><?= $product->price ?> $</td>
